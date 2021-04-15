@@ -6,4 +6,10 @@ export async function createUser(username) {
     .catch(err => console.log(err))
 }
 
-export default { createUser }
+export async function searchUser(username) {
+  return await api.get('/users/' + username)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+}
+
+export default { createUser, searchUser }
