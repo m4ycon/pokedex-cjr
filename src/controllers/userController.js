@@ -12,4 +12,16 @@ export async function searchUser(username) {
     .catch(err => console.log(err))
 }
 
-export default { createUser, searchUser }
+export async function addFavoritePokemon(username, pokemon_name) {
+  return await api.post(`/users/${username}/starred/${pokemon_name}`)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+}
+
+export async function removeFavoritePokemon(username, pokemon_name) {
+  return await api.delete(`/users/${username}/starred/${pokemon_name}`)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+}
+
+export default { createUser, searchUser, addFavoritePokemon, removeFavoritePokemon }
