@@ -1,3 +1,3 @@
 import pokemonsController from './pokemonsController'
 
-export const pokemons = pokemonsController
+export const apiPokemons = pokemonsController
