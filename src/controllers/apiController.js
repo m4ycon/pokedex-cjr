@@ -1,3 +1,3 @@
 import pokemonsController from './pokemonsController'
 
-export default { pokemons: pokemonsController }
+export const pokemons = pokemonsController
