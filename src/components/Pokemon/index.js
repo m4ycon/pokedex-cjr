@@ -17,6 +17,7 @@ import poisonImg from '../../assets/elementos/poison.png'
 import psychicImg from '../../assets/elementos/psychic.png'
 import rockImg from '../../assets/elementos/rock.png'
 import steelImg from '../../assets/elementos/steel.png'
+import waterImg from '../../assets/elementos/water.png'
 
 import emptyStarSvg from '../../assets/empty-star.svg'
 import starSvg from '../../assets/star.svg'
@@ -42,6 +43,7 @@ export const Elements = ({ name }) => {
     psychic: psychicImg,
     rock: rockImg,
     steel: steelImg,
+    water: waterImg,
   }
 
   return <ElementBall title={name}>
