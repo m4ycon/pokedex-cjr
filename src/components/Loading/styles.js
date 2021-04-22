@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const LoadingStyled = styled.img`
   width: 30px;
 
-  animation: 3s linear infinite rotate;
+  animation: 2s linear infinite rotate;
 
   @keyframes rotate {
     from {
