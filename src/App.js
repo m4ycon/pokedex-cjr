@@ -14,6 +14,8 @@ function App() {
 
           <Route path="/perfil" component={Perfil} />
 
+          <Route component={NotFound} />
+
         </Switch>
       </AuthProvider>
     </BrowserRouter>
