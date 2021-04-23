@@ -5,11 +5,12 @@ import { apiPokemons } from '../../controllers/apiController'
 import HomePokemon from "../../components/Pokemon"
 import Loading from '../../components/Loading'
 import { PokemonsContainer } from "./styles"
-
+import Modal from './components/Modal' 
 
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([])
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -18,16 +19,28 @@ const Home = () => {
     })()
   }, [])
 
+  const showPokemonModal = pokemonName => {
+
+}Mo    setShowModal(true)
+  }
+
   return (
-  <>
-    <h1>Home</h1>
-    {<PokemonsContainer>
-      {pokemons.length > 0 ? pokemons.map(pokemon =>
-        <HomePokemon key={pokemon.id} pokemon={pokemon} favorite />)
-        : <Loading />
-      }
-    </PokemonsContainer>}
-  </>
+    <>
+      <h1>Home</h1>
+        {<PokemonsContainer>
+          {pokemons.length > 0 ? 
+            pokemons.map(pokemon =>
+            showPokemonModal  <HomePokemon
+                key={pokemon.id}
+                pokemon={pokemon}
+                favorite
+                onClick={() => showPokemonModal(pokemon.name)} />)
+              : <Loading />
+          }
+        </PokemonsContainer>}
+
+        <Modal onClose={setShowModal} />
+      </>
   )
 }
 
