@@ -55,7 +55,6 @@ const Home = () => {
               pokemon={pokemon}
               favorite
               onClick={() => showPokemonModal(pokemon)} />)
-            : <Loading />
         }
 
 
