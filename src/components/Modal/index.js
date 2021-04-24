@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import ModalContainer from './styles'
 
 const Modal = ({ setIsVisible, children }) => {
