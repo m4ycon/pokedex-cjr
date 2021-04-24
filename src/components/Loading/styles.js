@@ -1,17 +1,25 @@
 import styled from 'styled-components'
 
-export const LoadingStyled = styled.img`
-  width: 30px;
+export const LoadingStyled = styled.div`
 
-  animation: 2s linear infinite rotate;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
-  @keyframes rotate {
-    from {
-      transform: rotate(0)
-    }
+  img {
+    width: 30px;
+    height: 30px;
 
-    to {
-      transform: rotate(360deg)
+    animation: 2s linear infinite rotate;
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
     }
   }
 `
