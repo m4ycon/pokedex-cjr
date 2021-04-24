@@ -9,12 +9,13 @@ export const Menu = () => {
   const [user, setUser] = useContext(AuthContext)
 
   const login = async () => {
-    const username = 'testestestess'
+    const username = 'ashh'
 
     // tenta criar, se der erro é pq existe, dai procura o usuário
     let newUser = false
     try {
-      newUser = await apiUser.createUser(username)
+      await apiUser.createUser(username)
+      newUser = await apiUser.searchUser(username)
     } catch (error) {
       newUser = await apiUser.searchUser(username)
     } finally {
