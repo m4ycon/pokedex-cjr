@@ -58,10 +58,10 @@ export const Favorite = ({ name, starred }) => {
   </FavoriteStar>
 }
 
-export const HomePokemon = ({ pokemon, favorite }) => {
+export const HomePokemon = ({ pokemon, favorite, ...props }) => {
   const elements = pokemon.kind.split(';')
 
-  return <PokemonContainer>
+  return <PokemonContainer {...props} >
     <img src={pokemon.image_url} alt={pokemon.name} />
 
     {elements.map(element => <Elements key={element} name={element} />)}
