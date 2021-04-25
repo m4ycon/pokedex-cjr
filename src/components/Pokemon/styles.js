@@ -77,9 +77,9 @@ export const FavoriteStar = styled.button`
     calc(${-Math.sin(Math.PI / 180 * 135)} * ${containerSize / 2 + 5}px - 50%)
   );
 
-  background-image: linear-gradient(90deg, whitesmoke 50%, lightgrey 50%);
   width: 40px;
   height: 40px;
+  background-color: whitesmoke;
 
   border-radius: 50%;
   border: 2px solid gold;
