@@ -1,4 +1,7 @@
+import { useContext } from "react"
+
 import { ElementBall, FavoriteStar, PokemonContainer, PokemonName } from "./styles"
+import { AuthContext } from "../AuthProvider"
 
 import bugImg from '../../assets/elementos/bug.png'
 import darkImg from '../../assets/elementos/dark.png'
@@ -21,6 +24,7 @@ import waterImg from '../../assets/elementos/water.png'
 
 import emptyStarSvg from '../../assets/empty-star.svg'
 import starSvg from '../../assets/star.svg'
+import { apiUser } from "../../controllers/apiController"
 
 
 export const Elements = ({ name }) => {
@@ -51,26 +55,43 @@ export const Elements = ({ name }) => {
   </ElementBall>
 }
 
-export const Favorite = ({ name, starred }) => {
+export const Favorite = ({ starred, ...props }) => {
 
-  return <FavoriteStar>
-    <img src={starred ? starSvg : emptyStarSvg} alt={name} />
+  return <FavoriteStar {...props}>
+    <img src={starred ? starSvg : emptyStarSvg} alt={'favoritar'} />
   </FavoriteStar>
 }
 
 export const HomePokemon = ({ pokemon, favorite, ...props }) => {
+  const [user, setUser] = useContext(AuthContext)
+
   const elements = pokemon.kind.split(';')
 
-  return <PokemonContainer {...props} >
-    <img src={pokemon.image_url} alt={pokemon.name} />
+  const favoritar = async (pokemon) => {
+    if (user) {
+      let res = user
+      if (pokemon.favorito) {
+        res = await apiUser.removeFavoritePokemon(user.user.username, pokemon.name)
+      } else {
+        res = await apiUser.addFavoritePokemon(user.user.username, pokemon.name)
+      }
+      setUser(res)
+    }
+  }
 
-    {elements.map(element => <Elements key={element} name={element} />)}
+  return <PokemonContainer>
+    <div {...props} >
+      <img src={pokemon.image_url} alt={pokemon.name} />
 
-    <Favorite name={'star'} starred={favorite} />
+      {elements.map(element => <Elements key={element} name={element} />)}
 
-    <PokemonName>
-      <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-    </PokemonName>
+
+      <PokemonName>
+        <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+      </PokemonName>
+    </div>
+
+    <Favorite starred={favorite} onClick={() => favoritar(pokemon)} />
 
   </PokemonContainer>
 }
