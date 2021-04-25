@@ -4,8 +4,8 @@ import { apiPokemons } from '../../controllers/apiController'
 
 import HomePokemon from "../../components/Pokemon"
 import Loading from '../../components/Loading'
-import Modal from '../../components/Modal' 
-import ModalPokemon from '../../components/ModalPokemon' 
+import Modal from '../../components/Modal'
+import ModalPokemon from '../../components/ModalPokemon'
 import { InfiniteScroll } from "../../components/InfiniteScroll"
 import { AuthContext } from "../../components/AuthProvider"
 
@@ -19,7 +19,7 @@ const Home = () => {
   const [page, setPage] = useState(1)
   const [user] = useContext(AuthContext)
 
-  
+
   const getMorePokemons = async () => {
 
     if (page > 33) {
@@ -37,8 +37,8 @@ const Home = () => {
       .then(res => setPokemons(pokemons => {
         if (user) {
           pokemons.data.map(pokemon => {
-            const i = user.pokemons.findIndex(pok => pok.id == pokemon.id)
-            pokemon.favorito = i < 0 ? false : true
+            pokemon.favorito = 0 <= user.pokemons.findIndex(pok => pok.id === pokemon.id)
+            return pokemon
           })
         }
 
@@ -54,13 +54,12 @@ const Home = () => {
   // atualiza os favoritos
   useEffect(() => {
     setPokemons(pokemons => {
-      if (user) {
-        pokemons.data.map(pokemon => {
-          const i = user.pokemons.findIndex(pok => pok.id == pokemon.id)
-          pokemon.favorito = i >= 0
-          return pokemon
-        })
-      }
+      pokemons.data.map(pokemon => {
+        // se n tem user, n tem favorito, senão, ve se ele é favorito ou não
+        pokemon.favorito = !user ?
+          false : 0 <= user.pokemons.findIndex(pok => pok.id === pokemon.id)
+        return pokemon
+      })
 
       return {
         isLoading: false,
@@ -77,14 +76,13 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
       {<PokemonsContainer>
         {pokemons.data && pokemons.data.map(pokemon =>
-            <HomePokemon
-              key={pokemon.id}
-              pokemon={pokemon}
-              favorite={pokemon.favorito}
-              onClick={() => showPokemonModal(pokemon)} />)
+          <HomePokemon
+            key={pokemon.id}
+            pokemon={pokemon}
+            favorite={pokemon.favorito}
+            onClick={() => showPokemonModal(pokemon)} />)
         }
 
 
@@ -95,8 +93,8 @@ const Home = () => {
       </PokemonsContainer>}
 
       {showModal && <Modal setIsVisible={setShowModal}>
-          <ModalPokemon pokemon={selectedPokemon} />
-        </Modal>}
+        <ModalPokemon pokemon={selectedPokemon} />
+      </Modal>}
     </>
   )
 }
