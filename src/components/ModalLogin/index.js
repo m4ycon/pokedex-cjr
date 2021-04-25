@@ -2,13 +2,14 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../AuthProvider"
 import { FormStyled } from "./styles"
 
-export const ModalLogin = () => {
+export const ModalLogin = ({ setIsVisible }) => {
   const [username, setUsername] = useState('')
   const [, , login] = useContext(AuthContext)
 
   const handleLogin = e => {
     e.preventDefault()
     login(username)
+      .then(() => setIsVisible(false))
   }
 
   return <FormStyled onSubmit={handleLogin}>
