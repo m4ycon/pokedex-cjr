@@ -52,8 +52,8 @@ const Home = () => {
     })
   }
 
-  // // atualiza os favoritos
-  useEffect(() => updateFavPokemons(), [user])
+  // atualiza os favoritos
+  useEffect(updateFavPokemons, [user])
 
   return (
     <>

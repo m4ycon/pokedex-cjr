@@ -15,10 +15,9 @@ const Perfil = () => {
 
   useEffect(() => {
     if (!user) history.push('/')
-  }, [])
+  }, [user, history])
 
   useEffect(() => {
-    if (!user) return history.push('/')
 
     setPokemons(pokemons => ({
       ...pokemons,
