@@ -8,5 +8,5 @@ export async function getPokemon(name) {
   return await api.get('/pokemons/' + name).then(res => res.data)
 }
 
-
-export default { getAllPokemons, getPokemon }
+const pokemonsController = { getAllPokemons, getPokemon }
+export default pokemonsController

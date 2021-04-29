@@ -16,13 +16,17 @@ export const Menu = () => {
     <div className="user">
       {user ?
         <>
-          <Link to="/perfil" className="perfil-btn">Perfil {user.user.username}</Link>
+          <Link to="/perfil" className="perfil-btn">
+            Pokemons Favoritos de {user.user.username}
+          </Link>
           <button className="perfil-btn" onClick={logout}>Logout</button>
         </> :
         <button className="perfil-btn" onClick={() => setShowModal(true)}>Login</button>}
     </div>
 
-    {(showModal && !user) && <Modal setIsVisible={setShowModal} ><ModalLogin /></Modal>}
+    {(showModal && !user) && <Modal setIsVisible={setShowModal} >
+      <ModalLogin setIsVisible={setShowModal} />
+    </Modal>}
   </MenuStyled>
 }
 

@@ -23,4 +23,5 @@ export async function removeFavoritePokemon(username, pokemon_name) {
     .catch(err => console.log(err))
 }
 
-export default { createUser, searchUser, addFavoritePokemon, removeFavoritePokemon }
+const userController = { createUser, searchUser, addFavoritePokemon, removeFavoritePokemon }
+export default userController

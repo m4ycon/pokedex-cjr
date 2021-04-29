@@ -9,15 +9,12 @@ export const AuthProvider = ({ children }) => {
   const login = async username => {
 
     // tenta criar, se der erro é pq existe, dai procura o usuário
-    let newUser = false
-    try {
-      await apiUser.createUser(username)
-      newUser = await apiUser.searchUser(username)
-    } catch (error) {
-      newUser = await apiUser.searchUser(username)
-    } finally {
-      setUser(newUser)
-    }
+    await apiUser.createUser(username)
+      .catch(err => console.error('Usuário já existe'))
+      .finally(async () => {
+        const newUser = await apiUser.searchUser(username)
+        setUser(newUser)
+      })
   }
 
   const logout = () => setUser(false)

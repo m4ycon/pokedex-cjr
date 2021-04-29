@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PokemonsContainer = styled.div`
+export const PokemonsContainerStyled = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 90vw;
