@@ -124,6 +124,7 @@ export const PokemonsAttributes = styled.div`
   div {
     display: none;
     background-color: white;
+    min-width: 90px;
     padding: 5px 20px;
     margin-bottom: 5px;
     text-align: center;
