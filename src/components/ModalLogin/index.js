@@ -15,7 +15,12 @@ export const ModalLogin = ({ setIsVisible }) => {
   return <FormStyled onSubmit={handleLogin}>
     <div className="username-container">
       <label htmlFor="username">Username</label>
-      <input type="text" name="username" onChange={e => setUsername(e.target.value)} />
+      <input 
+        type="text" 
+        name="username" 
+        onChange={e => setUsername(e.target.value)} 
+        required
+      />
     </div>
     <input type="submit" value="Entrar" />
   </FormStyled>

@@ -3,6 +3,13 @@ import styled from 'styled-components'
 const containerSize = 150
 const ballImgSize = 40
 
+const fadeAnimation = `
+  @keyframes fade {
+    from {filter: opacity(0);}
+    to {filter: opacity(1);}
+  }
+`
+
 export const PokemonContainer = styled.div`
   background-color: white;
   width: ${containerSize}px;
@@ -16,6 +23,9 @@ export const PokemonContainer = styled.div`
   border-top: 3px solid red;
   border-right: 3px solid red;
 
+  &.visible {
+    z-index: 20;
+  }
 
   :hover {
     cursor: pointer;
@@ -35,7 +45,7 @@ export const PokemonContainer = styled.div`
 
 const transformNBallPos = n => {
   const oneDeg = Math.PI / 180
-  const circlePosDeg = (45 - (n-1) * 30) % 360
+  const circlePosDeg = (45 - (n - 1) * 30) % 360
 
   return `
     &:nth-of-type(${n}) {
@@ -105,17 +115,45 @@ export const FavoriteStar = styled.button`
 
 `
 
-export const PokemonName = styled.div`
-  background-color: white;
-  padding: 5px 20px;
-  text-align: center;
-
+export const PokemonsAttributes = styled.div`
   position: absolute;
-  bottom: -5px;
+  top: 85%;
   left: 50%;
   transform: translateX(-50%);
 
-  border-radius: 5px;
-  border: 2px solid black;
+  div {
+    display: none;
+    background-color: white;
+    min-width: 90px;
+    padding: 5px 20px;
+    margin-bottom: 5px;
+    text-align: center;
+
+    border-radius: 5px;
+    border: 2px solid black;
+  }
+
+  div:first-of-type, /* nome do pokemon */
+  &.visible div { /* resto das informações */
+    display: block;
+    animation: fade linear 300ms;
+  }
+
+  ${fadeAnimation}
+  
 `
 
+export const BlackBG = styled.div`
+  background-color: rgba(0, 0, 0, .7);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+
+  animation: fade linear 300ms;
+  
+  ${fadeAnimation}
+`
