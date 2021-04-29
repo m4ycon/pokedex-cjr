@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 
-import { ElementBall, FavoriteStar, PokemonContainer, PokemonName } from "./styles"
+import { BlackBG, ElementBall, FavoriteStar, PokemonContainer, PokemonsAttributes } from "./styles"
 import { AuthContext } from "../AuthProvider"
 
 import bugImg from '../../assets/elementos/bug.png'
@@ -64,6 +64,7 @@ export const Favorite = ({ starred, ...props }) => {
 
 export const HomePokemon = ({ pokemon, favorite, ...props }) => {
   const [user, setUser] = useContext(AuthContext)
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false)
 
   const elements = pokemon.kind.split(';')
 
@@ -79,21 +80,39 @@ export const HomePokemon = ({ pokemon, favorite, ...props }) => {
     }
   }
 
-  return <PokemonContainer>
-    <div {...props} >
-      <img src={pokemon.image_url} alt={pokemon.name} />
 
-      {elements.map(element => <Elements key={element} name={element} />)}
+  return <>
+    <PokemonContainer className={isDetailsVisible ? "visible" : ''}>
+      <div {...props} onClick={() => setIsDetailsVisible(true)}>
 
+        <img src={pokemon.image_url} alt={pokemon.name} />
 
-      <PokemonName>
-        <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-      </PokemonName>
-    </div>
+        {elements.map(element => <Elements key={element} name={element} />)}
 
-    <Favorite starred={favorite} onClick={() => favoritar(pokemon)} />
+        <PokemonsAttributes className={isDetailsVisible ? "visible" : ''}>
+          <div>
+            <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+          </div>
 
-  </PokemonContainer>
+          <div>
+            <h2>#{pokemon.number}</h2>
+          </div>
+
+          <div>
+            <h2>Weight: {pokemon.weight}</h2>
+          </div>
+
+          <div>
+            <h2>Height: {pokemon.height}</h2>
+          </div>
+        </PokemonsAttributes>
+      </div>
+
+      <Favorite starred={favorite} onClick={() => favoritar(pokemon)} />
+
+    </PokemonContainer>
+    {isDetailsVisible && <BlackBG onClick={() => setIsDetailsVisible(false)} />}
+  </>
 }
 
 export default HomePokemon
