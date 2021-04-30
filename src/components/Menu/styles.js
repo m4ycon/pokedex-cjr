@@ -3,38 +3,52 @@ import styled from "styled-components";
 
 export const MenuStyled = styled.nav`
   background-color: blue;
-  padding: 15px 60px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .home, .perfil-btn {
+  .home {
     background-color: transparent;
     font-size: 24px;
     color: white;
     text-decoration: none;
   }
 
-  .perfil-btn {
-    font-size: 16px;
-    background-color: lightblue;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 3px;
+  .user {
+    display: flex;
+    flex-direction: row;
 
-    :hover {
-      filter: brightness(.95);
+    .icon-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: lightblue;
+      color: black;
+      width: 40px;
+      height: 40px;
+
+      border-radius: 3px;
+
+      :hover {
+        filter: brightness(.95);
+      }
+
+      :nth-child(2) {
+        margin-left: 10px;
+      }
+
     }
-
-    :nth-child(2) {
-      margin-left: 10px;
-    }
-
   }
+
 
   button:hover {
     cursor: pointer;
   }
 
+  @media (min-width: 400px) {
+    padding: 10px 60px;
+  }
 
 `
