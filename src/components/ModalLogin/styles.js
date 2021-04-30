@@ -10,7 +10,7 @@ export const FormStyled = styled.form`
   width: 100%;
   height: 200px;
 
-  .username-container, input[type="submit"] {
+  .username-container, button[type="submit"] {
     width: 70%;
   }
 
@@ -24,7 +24,7 @@ export const FormStyled = styled.form`
     margin-top: 5px;
   }
 
-  input[type="submit"] {
+  button[type="submit"] {
     border-radius: 5px;
     padding: 10px 20px;
     transition: filter ease 300ms, transform ease 100ms;
