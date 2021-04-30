@@ -28,7 +28,8 @@ export const FormStyled = styled.form`
     border-radius: 5px;
     padding: 10px 20px;
     transition: filter ease 300ms, transform ease 100ms;
-    background-color: lightblue;
+    background-color: #6290C8;
+    color: white;
 
     :hover {
       cursor: pointer;

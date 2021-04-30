@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const MenuStyled = styled.nav`
-  background-color: blue;
+  background-color: #1D3461;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -24,12 +24,16 @@ export const MenuStyled = styled.nav`
       justify-content: center;
       align-items: center;
 
-      background-color: lightblue;
+      background-color: #6290C8;
       color: black;
       width: 40px;
       height: 40px;
 
       border-radius: 3px;
+
+      img {
+        filter: invert(1);
+      }
 
       :hover {
         filter: brightness(.95);

@@ -123,10 +123,12 @@ export const PokemonsAttributes = styled.div`
 
   div {
     display: none;
-    background-color: white;
+    background-color: #EEF8FF; /* 1D3461 */
     min-width: 90px;
     padding: 5px 20px;
     margin-bottom: 5px;
+
+    color: #1D3461;
     text-align: center;
 
     border-radius: 5px;
