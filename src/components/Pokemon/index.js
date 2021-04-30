@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 
 import { BlackBG, ElementBall, FavoriteStar, PokemonContainer, PokemonsAttributes } from "./styles"
 import { AuthContext } from "../AuthProvider"
@@ -63,19 +63,20 @@ export const Favorite = ({ starred, ...props }) => {
 }
 
 export const HomePokemon = ({ pokemon, favorite, ...props }) => {
-  const [user, setUser] = useContext(AuthContext)
+  const [user, setUser, login] = useContext(AuthContext)
   const [isDetailsVisible, setIsDetailsVisible] = useState(false)
 
   const elements = pokemon.kind.split(';')
 
   const favoritar = async (pokemon) => {
-    if (user) {
-      let res = user
-      if (pokemon.favorito) {
-        res = await apiUser.removeFavoritePokemon(user.user.username, pokemon.name)
-      } else {
-        res = await apiUser.addFavoritePokemon(user.user.username, pokemon.name)
-      }
+
+    if (!user) { // se não estiver logado
+      setIsDetailsVisible(false) // previne dos detalhes aparecerem por cima do login
+      login('') // vai fazer o modal do login aparecer
+    } else {
+      const res = (pokemon.favorito) ? 
+        await apiUser.removeFavoritePokemon(user.user.username, pokemon.name) :
+        await apiUser.addFavoritePokemon(user.user.username, pokemon.name)
       setUser(res)
     }
   }
